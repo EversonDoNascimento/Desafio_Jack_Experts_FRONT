@@ -21,6 +21,56 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@keyframes animationErrorWindow {
+  0% {
+    opacity: 0;
+    scale: 0.5;
+  }
+  15% {
+    opacity: 1;
+    scale: 1;
+  }
+  85% {
+    opacity: 1;
+    scale: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.WindowError {
+  background-color: #d41c2e;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: white;
+  padding: 15px 10px;
+  animation-name: animationErrorWindow;
+  animation-duration: 3s;
+  opacity: 0;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  width: 17rem;
+}
+
+.WindowSuccess {
+  background-color: #00b63a;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: white;
+  padding: 15px 10px;
+  animation-name: animationErrorWindow;
+  animation-duration: 3s;
+  opacity: 0;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  width: 17rem;
+}
+
 .roboto-thin {
   font-family: "Roboto", sans-serif;
   font-weight: 100;
