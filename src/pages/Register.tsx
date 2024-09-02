@@ -172,7 +172,7 @@ const Register = () => {
               </div>
               <Button text="CADASTRAR"></Button>
             </form>
-            <span className="text-sm">
+            <span className="text-sm text-center">
               Você já possui um cadastro?
               <Link className="ml-2 underline" to={"/login"}>
                 Faça login aqui

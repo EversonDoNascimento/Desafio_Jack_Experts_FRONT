@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }: Props) => {
         setMessageSuccess({ show: false, message: "" });
       }, 3000);
       setTimeout(() => {
-        navigate("/home");
+        navigate("/");
       }, 3000);
     } else {
       setMessageUnauthorized({
