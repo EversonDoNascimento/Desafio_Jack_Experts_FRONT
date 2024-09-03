@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
 import { AuthProvider } from "./contexts/AuthContext";
 import PrivateRoutes from "./utils/PrivateRoutes";
+import { HeaderProvider } from "./contexts/HeaderContext";
 
 const App = () => {
   return (
@@ -23,9 +24,11 @@ const App = () => {
         <Route
           path="/"
           element={
-            <PrivateRoutes>
-              <Home />
-            </PrivateRoutes>
+            <HeaderProvider>
+              <PrivateRoutes>
+                <Home />
+              </PrivateRoutes>
+            </HeaderProvider>
           }
         />
         <Route path="*" element={<NotFound />} />

@@ -71,6 +71,23 @@ body {
   width: 17rem;
 }
 
+@keyframes animationItensHeader {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.itensHeaderAnimation {
+  animation-name: animationItensHeader;
+  animation-duration: 0.3s;
+}
+
 .roboto-thin {
   font-family: "Roboto", sans-serif;
   font-weight: 100;
