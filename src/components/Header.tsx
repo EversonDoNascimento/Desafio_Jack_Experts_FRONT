@@ -9,7 +9,7 @@ import { HeaderContext } from "../contexts/HeaderContext";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
-  const ctx = useContext(HeaderContext);
+  const headerCtx = useContext(HeaderContext);
   useEffect(() => {
     (function () {
       if (typeof window !== "undefined") {
@@ -20,7 +20,7 @@ const Header = () => {
       }
     })();
     return () => {};
-  }, [ctx]);
+  }, [headerCtx]);
   return (
     <header
       style={{
@@ -55,33 +55,49 @@ const Header = () => {
             </div>
             <p
               title={
-                ctx?.user_info.email ? ctx.user_info.email : "Sem informações"
+                headerCtx?.user_info.email
+                  ? headerCtx.user_info.email
+                  : "Sem informações"
               }
               className="text-white font-bold overflow-x-hidden w-40"
             >
-              {ctx?.user_info.email ? ctx.user_info.email : "Sem informações"}
+              {headerCtx?.user_info.email
+                ? headerCtx.user_info.email
+                : "Sem informações"}
             </p>
           </div>
           <div className="flex flex-col mt-8  gap-4 itensHeaderAnimation">
             <QtdTasks
               title="Tarefas para fazer"
-              qtd={ctx?.qtdTasksByStatus.todo ? ctx?.qtdTasksByStatus.todo : 0}
+              qtd={
+                headerCtx?.qtdTasksByStatus.todo
+                  ? headerCtx?.qtdTasksByStatus.todo
+                  : 0
+              }
             ></QtdTasks>
             <QtdTasks
               title="Tarefas sendo feitas"
               qtd={
-                ctx?.qtdTasksByStatus.doing ? ctx?.qtdTasksByStatus.doing : 0
+                headerCtx?.qtdTasksByStatus.doing
+                  ? headerCtx?.qtdTasksByStatus.doing
+                  : 0
               }
             ></QtdTasks>
             <QtdTasks
               title="Tarefas concluídas"
-              qtd={ctx?.qtdTasksByStatus.done ? ctx?.qtdTasksByStatus.done : 0}
+              qtd={
+                headerCtx?.qtdTasksByStatus.done
+                  ? headerCtx?.qtdTasksByStatus.done
+                  : 0
+              }
             ></QtdTasks>
             <QtdTasks
               hiddenLine={true}
               title="Total de Tarefas"
               qtd={
-                ctx?.qtdTasksByStatus.total ? ctx?.qtdTasksByStatus.total : 0
+                headerCtx?.qtdTasksByStatus.total
+                  ? headerCtx?.qtdTasksByStatus.total
+                  : 0
               }
             ></QtdTasks>
           </div>
@@ -107,16 +123,24 @@ const Header = () => {
         <div className="h-full flex flex-col justify-between  mt-5  itensHeaderAnimation">
           <div className="flex flex-col gap-4">
             <span className="text-black ml-2 bg-white px-2 py-1 rounded-lg text-center">
-              {ctx?.qtdTasksByStatus.todo ? ctx?.qtdTasksByStatus.todo : 0}
+              {headerCtx?.qtdTasksByStatus.todo
+                ? headerCtx?.qtdTasksByStatus.todo
+                : 0}
             </span>
             <span className="text-black ml-2 bg-white px-2 py-1 rounded-lg text-center">
-              {ctx?.qtdTasksByStatus.doing ? ctx?.qtdTasksByStatus.doing : 0}
+              {headerCtx?.qtdTasksByStatus.doing
+                ? headerCtx?.qtdTasksByStatus.doing
+                : 0}
             </span>
             <span className="text-black ml-2 bg-white px-2 py-1 rounded-lg text-center">
-              {ctx?.qtdTasksByStatus.done ? ctx?.qtdTasksByStatus.done : 0}
+              {headerCtx?.qtdTasksByStatus.done
+                ? headerCtx?.qtdTasksByStatus.done
+                : 0}
             </span>
             <span className="text-black ml-2 bg-white px-2 py-1 rounded-lg text-center">
-              {ctx?.qtdTasksByStatus.total ? ctx?.qtdTasksByStatus.total : 0}
+              {headerCtx?.qtdTasksByStatus.total
+                ? headerCtx?.qtdTasksByStatus.total
+                : 0}
             </span>
           </div>
           <div className=" mb-11 itensHeaderAnimation hover:scale-105 cursor-pointer transition-all ease-linear duration-200">
