@@ -4,6 +4,9 @@ import { HeaderContext } from "../contexts/HeaderContext";
 import { useTasks } from "../hooks/useTasks";
 import Loading from "../components/Loading";
 import StatusWindow from "../components/StatusWindow";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import TaskBoard from "../components/TaskBoard";
 const Home = () => {
   const user = useContext(HeaderContext);
   const useTask = useTasks();
@@ -31,19 +34,17 @@ const Home = () => {
               error={true}
             ></StatusWindow>
           ) : null}
-          <main className="flex">
+          <main className="flex gap-11">
             <Header></Header>
-            {useTask.tasks.map((item) => {
-              return <div>{item.completed}</div>;
-            })}
-            <button
-              onClick={() => {
-                user?.getQtdTasksByStatus();
-              }}
-            >
-              recarregar
-            </button>
+
+            <div className="flex flex-col gap-11 ml-24 sm:ml-0 mb-20 sm:mb-0">
+              <h1 className="text-2xl font-bold mt-4 ">Tarefas:</h1>
+              <DndProvider backend={HTML5Backend}>
+                <TaskBoard></TaskBoard>
+              </DndProvider>
+            </div>
           </main>
+          {useTask.tasks.map((item) => item.completed)}
         </>
       )}
     </>

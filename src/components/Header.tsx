@@ -25,9 +25,9 @@ const Header = () => {
     <header
       style={{
         backgroundColor: renderColors("container-bg"),
-        width: `${openNav ? "18rem" : "4rem"}`,
+        width: `${openNav ? "18rem" : "3rem"}`,
       }}
-      className="h-screen flex flex-col items-center  gap-5 transition-all ease-in-out duration-200 rounded-r-xl"
+      className="fixed z-10 md:static h-screen flex flex-col items-center  gap-5 transition-all ease-in-out duration-200 rounded-r-xl"
     >
       <div className="w-full flex justify-end px-4 mt-5">
         <img
@@ -122,28 +122,28 @@ const Header = () => {
       ) : (
         <div className="h-full flex flex-col justify-between  mt-5  itensHeaderAnimation">
           <div className="flex flex-col gap-4">
-            <span className="text-black ml-2 bg-white px-2 py-1 rounded-lg text-center">
+            <span className="text-black ml-2 bg-white px-2 py-1 rounded-lg text-center text-sm">
               {headerCtx?.qtdTasksByStatus.todo
                 ? headerCtx?.qtdTasksByStatus.todo
                 : 0}
             </span>
-            <span className="text-black ml-2 bg-white px-2 py-1 rounded-lg text-center">
+            <span className="text-black ml-2 bg-white px-2 py-1 rounded-lg text-center text-sm">
               {headerCtx?.qtdTasksByStatus.doing
                 ? headerCtx?.qtdTasksByStatus.doing
                 : 0}
             </span>
-            <span className="text-black ml-2 bg-white px-2 py-1 rounded-lg text-center">
+            <span className="text-black ml-2 bg-white px-2 py-1 rounded-lg text-center text-sm">
               {headerCtx?.qtdTasksByStatus.done
                 ? headerCtx?.qtdTasksByStatus.done
                 : 0}
             </span>
-            <span className="text-black ml-2 bg-white px-2 py-1 rounded-lg text-center">
+            <span className="text-black ml-2 bg-white px-2 py-1 rounded-lg text-center text-sm">
               {headerCtx?.qtdTasksByStatus.total
                 ? headerCtx?.qtdTasksByStatus.total
                 : 0}
             </span>
           </div>
-          <div className=" mb-11 itensHeaderAnimation hover:scale-105 cursor-pointer transition-all ease-linear duration-200">
+          <div className=" mb-11 itensHeaderAnimation hover:scale-105 cursor-pointer transition-all ease-linear duration-200 ">
             <Link to="/login" className="underline">
               <img src={IconLogout} width={35} alt="" />
             </Link>

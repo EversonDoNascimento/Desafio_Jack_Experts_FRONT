@@ -12,7 +12,7 @@ const QtdTasks = ({ title, qtd, hiddenLine }: Props) => {
       }  border-white/25 pb-4`}
     >
       <p className="font-bold">{title}:</p>{" "}
-      <span className="text-black ml-2 bg-white px-2 py-1 rounded-lg">
+      <span className="text-black ml-2 bg-white px-2 py-1 rounded-lg text-sm">
         {qtd}
       </span>
     </div>

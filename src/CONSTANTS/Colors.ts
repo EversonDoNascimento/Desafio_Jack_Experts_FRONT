@@ -1,6 +1,7 @@
 const Colors = [
   { title: "container-bg", color: "#071739" },
   { title: "btn-register", color: "#638CE2" },
+  { title: "task-card", color: "#A4B6C4" },
 ];
 
 // A função recebe um parâmetro e filtra o array de cores de acordo com esse parâmetro
