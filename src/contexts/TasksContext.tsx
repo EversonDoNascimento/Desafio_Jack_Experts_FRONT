@@ -1,17 +1,35 @@
-import { useCallback, useContext, useEffect, useState } from "react";
-import { HeaderContext } from "../contexts/HeaderContext";
+import { ReactNode, useContext, useEffect, useState } from "react";
+import { createContext } from "react";
 import { changeStatusTask, getAllTasks, registerTask } from "../Api/tasks";
+import Loading from "../components/Loading";
 
-export interface TaskBoard {
+export type TaskBoard = {
   id: string;
   title: string;
   completed: string;
-}
+};
 
-// O useTasks é um custom hook que ficará responsável por controlar todas as requisições feitas nas tarefas
-export const useTasks = () => {
-  const user = useContext(HeaderContext);
+type ContextType = {
+  tasks: TaskBoard[];
+  setTasks: (task: TaskBoard[]) => void;
+  loadTasks: () => void;
+  userId: string | null;
+  setUserId: (id: string) => void;
+  createTask: (info_task: { title: string; description: string }) => void;
+  handleStatusTask: (id_task: string, completed: number) => void;
+  handleStatus: boolean;
+  setHandleStatus: (value: boolean) => void;
+};
+
+export const TaskContext = createContext<ContextType | null>(null);
+
+type Props = {
+  children: ReactNode;
+};
+
+export const TaskProvider = ({ children }: Props) => {
   const [tasks, setTasks] = useState<TaskBoard[]>([]);
+  const [userId, setUserId] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [messageError, setMessageError] = useState({
     show: false,
@@ -21,13 +39,13 @@ export const useTasks = () => {
     show: false,
     message: "",
   });
-  // Flag para controlar o recarregamento de tasks
-  const [reloadTasks, setReloadTasks] = useState(false);
+  const [handleStatus, setHandleStatus] = useState(false);
+
   const loadTasks = async () => {
     setLoading(true);
     const token = localStorage.getItem("token");
-    if (user && token) {
-      const { data, status } = await getAllTasks(user.user_info.id, token);
+    if (userId && token) {
+      const { data, status } = await getAllTasks(userId, token);
       if (status === 200) {
         const initializedTasks = data.data.map((task: TaskBoard) => ({
           id: task.id,
@@ -44,7 +62,7 @@ export const useTasks = () => {
       setTimeout(() => setMessageError({ show: false, message: "" }), 3000);
     }
     setLoading(false);
-  }; // Dependendo de user para memorizar corretamente
+  };
 
   const createTask = async (info_task: {
     title: string;
@@ -52,13 +70,12 @@ export const useTasks = () => {
   }) => {
     setLoading(true);
     const token = localStorage.getItem("token");
-    if (user && token && info_task) {
+    if (userId && token && info_task) {
       const { status, data } = await registerTask(
-        { ...info_task, id_user: user.user_info.id },
+        { ...info_task, id_user: userId },
         token
       );
       if (status === 201) {
-        setReloadTasks(true);
         console.log("criado");
       } else {
         setMessageError({ show: true, message: data.error });
@@ -73,13 +90,14 @@ export const useTasks = () => {
   const handleStatusTask = async (id_task: string, completed: number) => {
     setLoading(true);
     const token = localStorage.getItem("token");
-    if (user && token && id_task) {
+    if (token && id_task) {
       const { status, data } = await changeStatusTask(
         id_task,
         completed,
         token
       );
       if (status === 200) {
+        setHandleStatus(true);
       } else {
         setMessageError({ show: true, message: data.error });
         setTimeout(() => setMessageError({ show: false, message: "" }), 3000);
@@ -90,22 +108,34 @@ export const useTasks = () => {
   // Desabilitando o recurso do eslint que solicita que o state tenha alguma depencência, pois nesse caso não precisamos
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
-    loadTasks();
-  }, []);
+    if (userId) {
+      loadTasks();
+    }
+  }, [userId]);
 
-  // useEffect(() => {
-  //   console.log(tasks); // Apenas observa o estado sem causar loops
-  // }, [setTasks]);
-  return {
-    tasks,
-    loading,
-    messageError,
-    messageSuccess,
-    loadTasks,
-    setTasks,
-    createTask,
-    handleStatusTask,
-    reloadTasks,
-    setReloadTasks,
-  };
+  return (
+    <TaskContext.Provider
+      value={{
+        tasks,
+        setTasks,
+        loadTasks,
+        userId,
+        setUserId,
+        createTask,
+        handleStatusTask,
+        handleStatus,
+        setHandleStatus,
+      }}
+    >
+      {loading ? <Loading></Loading> : <> {children}</>}
+    </TaskContext.Provider>
+  );
+};
+
+export const UseTaskContext = () => {
+  const context = useContext(TaskContext);
+  if (context === undefined) {
+    throw new Error("O contexto precisa ficar dentro de um provider");
+  }
+  return context;
 };

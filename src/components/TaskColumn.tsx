@@ -1,6 +1,10 @@
 import { useDrop } from "react-dnd";
 import TaskCard from "./TaskCard";
 import renderColors from "../CONSTANTS/Colors";
+import FormRegisterTask from "./FormRegisterTask";
+import { useState } from "react";
+
+import { UseTaskContext } from "../contexts/TasksContext";
 
 interface TaskColumnProps {
   completed: string;
@@ -9,10 +13,13 @@ interface TaskColumnProps {
 }
 
 const TaskColumn = ({ completed, tasks, moveTask }: TaskColumnProps) => {
+  const taskCtx = UseTaskContext();
+
   const [, drop] = useDrop(() => ({
     accept: "TASK",
     drop: (item: { id: string }) => moveTask(item.id, completed),
   }));
+  const [showWindowAdd, setShowWindowAdd] = useState(false);
   const renderTitle = (title: string) => {
     switch (title) {
       case "0":
@@ -26,8 +33,50 @@ const TaskColumn = ({ completed, tasks, moveTask }: TaskColumnProps) => {
         break;
     }
   };
+
+  const renderContentAdd = (condition: string) => {
+    if (condition === "0") {
+      if (showWindowAdd) {
+        return (
+          <FormRegisterTask
+            sendData={(data) => {
+              if (taskCtx) {
+                taskCtx.createTask(data);
+                taskCtx.loadTasks();
+              }
+
+              setShowWindowAdd(false);
+            }}
+            close={() => {
+              setShowWindowAdd(false);
+            }}
+          ></FormRegisterTask>
+        );
+      }
+      return (
+        <div
+          onClick={() => {
+            setShowWindowAdd(true);
+          }}
+          style={{ backgroundColor: renderColors("btn-register") }}
+          className="mx-1 hover:scale-105 transition-all opacity-60 hover:opacity-100 ease-linear duration-200 cursor-pointer rounded-md "
+        >
+          <div className="flex justify-center items-center relative p-4 w-full">
+            <div className="w-6 border-b-4 border-white absolute rotate-90 "></div>
+            <div className="w-6 border-b-4 border-white absolute "></div>
+          </div>
+        </div>
+      );
+    }
+  };
   return (
     <>
+      {/* {messageError.show ? (
+            <StatusWindow
+              text={messageError.message}
+              error={true}
+            ></StatusWindow>
+          ) : null} */}
       <div
         ref={drop}
         style={{
@@ -41,29 +90,21 @@ const TaskColumn = ({ completed, tasks, moveTask }: TaskColumnProps) => {
 
         {tasks.map((task) => {
           return (
-            <>
+            <div
+              onDoubleClick={() => {
+                alert("Entrei na task" + task.id);
+              }}
+            >
               <TaskCard
                 key={task.id}
                 id={task.id}
                 title={task.title}
               ></TaskCard>
-            </>
+            </div>
           );
         })}
-        {completed == "0" && (
-          <div
-            onClick={() => {
-              alert("Clicou");
-            }}
-            style={{ backgroundColor: renderColors("btn-register") }}
-            className="mx-1 hover:scale-105 transition-all opacity-60 hover:opacity-100 ease-linear duration-200 cursor-pointer rounded-md"
-          >
-            <div className="flex justify-center items-center relative p-4 w-full">
-              <div className="w-6 border-b-4 border-white absolute rotate-90 "></div>
-              <div className="w-6 border-b-4 border-white absolute "></div>
-            </div>
-          </div>
-        )}
+
+        {renderContentAdd(completed)}
 
         <p className="text-[13px] text-white w-52 text-center mt-11 roboto-bold">
           Clique duas vezes na tarefa para visualizá-la

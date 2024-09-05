@@ -50,7 +50,6 @@ export const HeaderProvider = ({ children }: Props) => {
           done: data.done,
           total: data.total,
         });
-        console.log(data);
       }
     }
   };
