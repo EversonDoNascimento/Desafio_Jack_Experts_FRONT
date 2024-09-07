@@ -8,7 +8,12 @@ import { UseTaskContext } from "../contexts/TasksContext";
 
 interface TaskColumnProps {
   completed: string;
-  tasks: { id: string; title: string; completed: string }[];
+  tasks: {
+    id: string;
+    title: string;
+    completed: string;
+    description: string;
+  }[];
   moveTask: (id: string, completed: string) => void;
 }
 
@@ -57,6 +62,10 @@ const TaskColumn = ({ completed, tasks, moveTask }: TaskColumnProps) => {
         <div
           onClick={() => {
             setShowWindowAdd(true);
+            if (taskCtx) {
+              taskCtx.setEditingMode(false);
+              taskCtx.setTaskSelected(null);
+            }
           }}
           style={{ backgroundColor: renderColors("btn-register") }}
           className="mx-1 hover:scale-105 transition-all opacity-60 hover:opacity-100 ease-linear duration-200 cursor-pointer rounded-md "
@@ -92,13 +101,17 @@ const TaskColumn = ({ completed, tasks, moveTask }: TaskColumnProps) => {
           return (
             <div
               onDoubleClick={() => {
-                alert("Entrei na task" + task.id);
+                setShowWindowAdd(false);
+                if (taskCtx) {
+                  taskCtx.setTaskSelected(task.id);
+                }
               }}
             >
               <TaskCard
                 key={task.id}
                 id={task.id}
                 title={task.title}
+                description={task.description}
               ></TaskCard>
             </div>
           );

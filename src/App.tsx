@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import { AuthProvider } from "./contexts/AuthContext";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import { HeaderProvider } from "./contexts/HeaderContext";
+import { TaskProvider } from "./contexts/TasksContext";
 
 const App = () => {
   return (
@@ -26,7 +27,9 @@ const App = () => {
           element={
             <HeaderProvider>
               <PrivateRoutes>
-                <Home />
+                <TaskProvider>
+                  <Home />
+                </TaskProvider>
               </PrivateRoutes>
             </HeaderProvider>
           }

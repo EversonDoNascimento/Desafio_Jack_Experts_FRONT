@@ -93,3 +93,48 @@ export const changeStatusTask = async (
     throw error;
   }
 };
+
+export const editTask = async (
+  token: string,
+  data: { id: string; title: string; description: string }
+) => {
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  try {
+    const response = await api.patch(`/task/edit`, data, { headers });
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      return {
+        data: error.response?.data,
+        status: error.response?.status,
+      };
+    }
+    throw error;
+  }
+};
+
+export const deleteTask = async (token: string, id_task: string) => {
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  try {
+    const response = await api.delete(`/task/delete/${id_task}`, { headers });
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      return {
+        data: error.response?.data,
+        status: error.response?.status,
+      };
+    }
+    throw error;
+  }
+};

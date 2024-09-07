@@ -10,6 +10,13 @@ body {
   background-color: #cdd4da;
 }
 
+p {
+  text-align: justify;
+  hyphens: auto;
+  text-justify: inter-word;
+  letter-spacing: -0.5px;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

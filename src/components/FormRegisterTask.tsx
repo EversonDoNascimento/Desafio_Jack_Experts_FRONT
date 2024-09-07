@@ -3,16 +3,19 @@ import { useForm } from "react-hook-form";
 import SchemaTaskRegister from "../zod/SchemaTaskRegister";
 import { z } from "zod";
 import renderColors from "../CONSTANTS/Colors";
+import { useEffect } from "react";
 
 type Props = {
   sendData: (data: z.infer<typeof SchemaTaskRegister>) => void;
+  data?: { title: string; description: string };
   close: () => void;
 };
 
-const FormRegisterTask = ({ close, sendData }: Props) => {
+const FormRegisterTask = ({ close, sendData, data }: Props) => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<z.infer<typeof SchemaTaskRegister>>({
     resolver: zodResolver(SchemaTaskRegister),
@@ -21,12 +24,24 @@ const FormRegisterTask = ({ close, sendData }: Props) => {
   const onSubmit = (data: z.infer<typeof SchemaTaskRegister>) => {
     sendData(data);
   };
+
+  useEffect(() => {
+    if (data) {
+      setValue("title", data?.title);
+      setValue("description", data?.description);
+    }
+  }, [data, setValue]);
+
   return (
     <>
       <div className="itensHeaderAnimation">
         <form
-          style={{ backgroundColor: renderColors("task-card") }}
-          className="flex flex-col gap-2 mx-1 p-2 rounded-md"
+          style={{
+            backgroundColor: renderColors("task-card"),
+            padding: `${data ? "0" : "0.5rem"}`,
+            margin: `${data ? " 0px" : "0px 2px"}`,
+          }}
+          className="flex flex-col gap-2   rounded-md"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="flex flex-col gap-1 ">
@@ -55,18 +70,28 @@ const FormRegisterTask = ({ close, sendData }: Props) => {
             )}
           </div>
           <div className="flex gap-2 justify-center mt-2">
-            <button
-              className="bg-red-700 text-white rounded-lg py-1 px-2 text-[12px] hover:scale-105 transition-all ease-linear duration-200"
-              onClick={(e) => {
-                e.preventDefault();
-                close();
-              }}
-            >
-              CANCELAR
-            </button>
-            <button className="bg-green-700 text-white rounded-lg py-1 px-2 text-[12px] hover:scale-105 transition-all ease-linear duration-200">
-              ADICIONAR
-            </button>
+            {data ? (
+              <>
+                <button className="bg-blue-700 text-white rounded-md py-1  w-full hover:scale-105 transition-all ease-linear duration-200">
+                  SALVAR EDIÇÃO
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  className="bg-red-700 text-white rounded-lg py-1 px-2 text-[12px] hover:scale-105 transition-all ease-linear duration-200"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    close();
+                  }}
+                >
+                  CANCELAR
+                </button>
+                <button className="bg-green-700 text-white rounded-lg py-1 px-2 text-[12px] hover:scale-105 transition-all ease-linear duration-200">
+                  ADICIONAR
+                </button>
+              </>
+            )}
           </div>
         </form>
       </div>
