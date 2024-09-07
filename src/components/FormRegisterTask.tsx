@@ -26,7 +26,7 @@ const FormRegisterTask = ({ close, sendData, data }: Props) => {
   };
 
   useEffect(() => {
-    if (data) {
+    if (data && data.title.trim() !== "" && data.description.trim() !== "") {
       setValue("title", data?.title);
       setValue("description", data?.description);
     }

@@ -121,7 +121,7 @@ const TaskCard = ({ id, title, description }: TaskProps) => {
                 }
               }}
             >
-              {taskCtx && taskCtx.editingMode ? "CANCELAR" : "VOLTAR"}
+              {taskCtx && taskCtx.editingMode ? "CANCELAR" : "FECHAR"}
             </button>
           </div>
         </div>

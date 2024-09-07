@@ -67,7 +67,7 @@ const Login = () => {
                 className="text-sm w-full bg-transparent outline-none montserrat-normal"
                 placeholder="Digite sua senha"
                 {...register("password")}
-                type="text"
+                type="password"
               ></input>
             </label>
             {errors.password && (

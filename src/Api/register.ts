@@ -1,6 +1,7 @@
 import axios from "axios";
 import { api } from "./api";
 
+// Função responsável pelo cadastro de usuários
 export const registerUser = async (data: {
   email: string;
   password: string;

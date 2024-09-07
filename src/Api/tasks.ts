@@ -2,6 +2,8 @@ import axios from "axios";
 import { api } from "./api";
 import { TaskTypeRegister } from "../types/TaskType";
 
+// As funções aqui são responsáveis pelo CRUD das tarefas
+
 export const qtdTasks = async (token: string, id_user: string) => {
   const headers = {
     Authorization: `Bearer ${token}`,

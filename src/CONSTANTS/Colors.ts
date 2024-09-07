@@ -1,3 +1,4 @@
+// Definindo a contante cores para facilitar a manutenção do código caso alguma cor venha a mudar posteriormente
 const Colors = [
   { title: "container-bg", color: "#071739" },
   { title: "btn-register", color: "#638CE2" },

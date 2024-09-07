@@ -12,7 +12,7 @@ RUN npm install
 
 # Copiar todo o código fonte para o diretório de trabalho
 COPY . .
-
+COPY .env .
 # Rodar o build da aplicação
 RUN npm run build
 

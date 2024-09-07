@@ -1,50 +1,106 @@
-# React + TypeScript + Vite
+# Desafio lista de tarefas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O projeto lista de tarefas foi desenvolvido como solução para um desafio técnico de uma vaga de estágio full stack.
 
-Currently, two official plugins are available:
+## Índice
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Sobre](#sobre)
+- [Instalação](#instalação)
+- [Uso](#uso)
+- [Desenvolvimento](#desenvolvimento)
+- [Imagens](#imagens)
+- [Protótipo](#protótipo)
 
-## Expanding the ESLint configuration
+## Sobre
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+O objetivo do projeto era criar uma lista de tarefas com funcionalidades completas de CRUD, além de implementar autenticação de usuários. Foram utilizadas diversas referências, como a estrutura de quadros do Trello, que inspirou a divisão de tarefas no sistema, proporcionando uma organização eficiente e intuitiva.
 
-- Configure the top-level `parserOptions` property like this:
+## Tecnologias utilizadas
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **React.js:** Framework React para desenvolvimento de aplicações web.
+- **Outras tecnologias:** Back-end desenvolvido em Nodejs, utilizando a biblioteca express ([link para o repositório](https://github.com/EversonDoNascimento/Desafio_Jack_Experts))
+
+## Instalação
+
+Siga as instruções abaixo para configurar e executar o projeto localmente.
+
+Antes de iniciar essa instalação, é recomendado que você já tenha acessado e seguido o tutorial de instalação do back end do projeto
+
+- Clone o projeto
+
+```bash
+
+# Clone o repositório via SSH
+git clone git@github.com:EversonDoNascimento/Desafio_Jack_Experts_FRONT.git
+
+
+# Clone o repositório via HTTPS
+git clone https://github.com/EversonDoNascimento/Desafio_Jack_Experts_FRONT.git
+
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- Entre no diretório do projeto
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+```bash
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+  cd Desafio_Jack_Experts_FRONT
+
 ```
+
+- Crie o arquivo .env que irá conter a url da Api
+
+```bash
+# No linux você pode utilizar o comando nano
+
+  nano .env
+
+```
+
+- Crie a variável VITE_URL_API
+
+```bash
+# Caso o seu back end esteja rodando na mesma porta (3333) basta copiar e colar:
+
+  VITE_URL_API="http://localhost:3333/api"
+
+```
+
+Obs.: Não esqueça de apertar ctrl+o para salvar o alteração no arquivo .env, e ctrl+x para fechar.(Caso tenha optado por criar o arquivo através do nano).
+
+- Instale as dependências do projeto
+
+```bash
+  npm i
+```
+
+Obs.: Certifique-se que você já possui o node e o npm instalados na sua máquina.
+
+- Para rodar o projeto utilize o seguinte comando:
+
+```bash
+  npm run start
+```
+
+## Uso
+
+- Pronto! O projeto já deve estar disponível no link: http://localhost:5173/
+
+## Desenvolvimento
+
+A interface do projeto e o gerenciamento de tarefas foram desenvolvidos com base em algumas referências mencionadas anteriormente. O objetivo principal foi criar uma aplicação simples, adequada para a funcionalidade de um gerenciador de tarefas, mas que também seguisse parte da dinâmica de sistemas maiores e já consolidados no mercado.
+
+Na parte técnica, utilizei o Context API do React para reduzir a repetição de código e garantir a sincronização das alterações feitas nas tarefas em diferentes partes da aplicação que consomem o provider de tarefas. Também apliquei boas práticas de programação, como a criação de constantes e componentes reutilizáveis para elementos repetitivos.
+
+A escolha do JWT como método de autenticação foi uma exigência do projeto. No entanto, optei por armazenar o JWT no localStorage por questões de praticidade, embora essa abordagem não seja recomendada para aplicações que demandam um nível de segurança mais elevado.
+
+## Imagens
+
+![Login](./public/Images_Readme/Login.png)
+![Register](./public/Images_Readme/Register.png)
+![Home](./public/Images_Readme/Home.png)
+![Add](./public/Images_Readme/Add.png)
+![Edit](./public/Images_Readme/Edit.png)
+
+## Protótipo
+
+Link do figma do projeto: [Clique aqui para acessar!](https://www.figma.com/design/5sAYCdu76J3erVMLNz6IVG/Desafio-Jack-Expert?t=1SRZbf3UyWD9AKid-0)

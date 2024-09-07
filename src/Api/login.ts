@@ -1,6 +1,7 @@
 import axios from "axios";
 import { api } from "./api";
 
+// Função responsável pela autenticação do usuário
 export const loginUser = async ({
   email,
   password,
@@ -25,6 +26,8 @@ export const loginUser = async ({
   }
 };
 
+// Função responsável para verificar se o token é válido
+// Utilizada nas rotas privadas
 export const verifyToken = async (token: string) => {
   const headers = {
     Authorization: `Bearer ${token}`,

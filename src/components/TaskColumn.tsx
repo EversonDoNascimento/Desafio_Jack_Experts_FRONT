@@ -80,12 +80,6 @@ const TaskColumn = ({ completed, tasks, moveTask }: TaskColumnProps) => {
   };
   return (
     <>
-      {/* {messageError.show ? (
-            <StatusWindow
-              text={messageError.message}
-              error={true}
-            ></StatusWindow>
-          ) : null} */}
       <div
         ref={drop}
         style={{
