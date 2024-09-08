@@ -67,13 +67,27 @@ git clone https://github.com/EversonDoNascimento/Desafio_Jack_Experts_FRONT.git
 
 Obs.: Não esqueça de apertar ctrl+o para salvar o alteração no arquivo .env, e ctrl+x para fechar.(Caso tenha optado por criar o arquivo através do nano).
 
-- Instale as dependências do projeto
+Obs.: Certifique-se que você já possui o node e o npm instalados na sua máquina.
+
+```bash
+
+  # Comando para vericar se o node está instalado
+  node --version
+
+```
+
+```bash
+
+  # Comando para vericar se o npm está instalado
+  npm --version
+
+```
+
+- Dentro do diretório raiz do projeto, instale as dependências necessárias
 
 ```bash
   npm i
 ```
-
-Obs.: Certifique-se que você já possui o node e o npm instalados na sua máquina.
 
 - Para rodar o projeto utilize o seguinte comando:
 
