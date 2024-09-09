@@ -76,12 +76,13 @@ git clone https://github.com/EversonDoNascimento/Desafio_Jack_Experts_FRONT.git
 
 ```
 
-- Crie a variável VITE_URL_API
+- Crie a variável VITE_API_URL
 
 ```bash
 # Caso o seu back end esteja rodando na mesma porta (3333) basta copiar e colar:
 
-  VITE_URL_API="http://localhost:3333/api"
+  VITE_API_URL="http://localhost:3333/api"
+
 
 ```
 
@@ -96,7 +97,7 @@ Obs.: Não esqueça de apertar ctrl+o para salvar o alteração no arquivo .env,
 - Para colocar o projeto para funcionar utilize o seguinte comando:
 
 ```bash
-  npm run start
+  npm run dev
 ```
 
 ## Uso
