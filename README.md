@@ -7,9 +7,11 @@ O projeto lista de tarefas foi desenvolvido como solução para um desafio técn
 - [Sobre](#sobre)
 - [Instalação](#instalação)
 - [Uso](#uso)
+- [Testes](#testes)
 - [Desenvolvimento](#desenvolvimento)
 - [Imagens](#imagens)
 - [Protótipo](#protótipo)
+- [Deploy](#deploy)
 
 ## Sobre
 
@@ -25,6 +27,24 @@ O objetivo do projeto era criar uma lista de tarefas com funcionalidades complet
 Siga as instruções abaixo para configurar e executar o projeto localmente.
 
 Antes de iniciar essa instalação, é recomendado que você já tenha acessado e seguido o tutorial de instalação do back end do projeto
+
+- Requisitos:
+
+  - Node instalado
+  - Npm instalado
+
+```bash
+
+  # Comando para verificar se o node está instalado
+  node --version
+```
+
+```bash
+
+  # Comando para verificar se o npm está instalado
+  npm --version
+
+```
 
 - Clone o projeto
 
@@ -67,29 +87,13 @@ git clone https://github.com/EversonDoNascimento/Desafio_Jack_Experts_FRONT.git
 
 Obs.: Não esqueça de apertar ctrl+o para salvar o alteração no arquivo .env, e ctrl+x para fechar.(Caso tenha optado por criar o arquivo através do nano).
 
-Obs.: Certifique-se que você já possui o node e o npm instalados na sua máquina.
-
-```bash
-
-  # Comando para vericar se o node está instalado
-  node --version
-
-```
-
-```bash
-
-  # Comando para vericar se o npm está instalado
-  npm --version
-
-```
-
-- Dentro do diretório raiz do projeto, instale as dependências necessárias
+- Dentro do diretório raiz do projeto, abra o terminal e cole o seguinte comando:
 
 ```bash
   npm i
 ```
 
-- Para rodar o projeto utilize o seguinte comando:
+- Para colocar o projeto para funcionar utilize o seguinte comando:
 
 ```bash
   npm run start
@@ -98,6 +102,16 @@ Obs.: Certifique-se que você já possui o node e o npm instalados na sua máqui
 ## Uso
 
 - Pronto! O projeto já deve estar disponível no link: http://localhost:5173/
+
+## Testes
+
+Os testes feitos no front-end foram teste unitários. Testei algumas funções específicas do sistema, principalmente as que tratavam de validações de dados.
+
+- Execute o seguinte comando para rodar os testes
+
+```bash
+  npm run test
+```
 
 ## Desenvolvimento
 
@@ -118,3 +132,16 @@ A escolha do JWT como método de autenticação foi uma exigência do projeto. N
 ## Protótipo
 
 Link do figma do projeto: [Clique aqui para acessar!](https://www.figma.com/design/5sAYCdu76J3erVMLNz6IVG/Desafio-Jack-Expert?t=1SRZbf3UyWD9AKid-0)
+
+## Deploy
+
+A API do projeto foi hospedada no Google Cloud. No entanto, como o certificado SSL é autoassinado, é necessário conceder as permissões apropriadas nos navegadores para acessá-la. Caso contrário, qualquer requisição feita pelo front-end à API poderá falhar, impedindo o funcionamento correto da aplicação.
+Sendo assim, antes de acessar o site entre no seguinte link e conceda permissão no navegador:
+
+[Link API](https://35.192.146.233/)
+
+Logo após conceder a permissão para acessar o site, pode fechar a página padrão do nginx.
+
+O Front-end do projeto foi hospedado na plataforma da Vercel.
+
+[Link do site](https://desafio-jack-experts-fr-git-1d6f72-everson-nascimentos-projects.vercel.app)
