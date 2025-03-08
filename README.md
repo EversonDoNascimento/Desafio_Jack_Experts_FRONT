@@ -12,6 +12,7 @@ O projeto lista de tarefas foi desenvolvido como solução para um desafio técn
 - [Imagens](#imagens)
 - [Protótipo](#protótipo)
 - [Deploy](#deploy)
+- [Docker](#docker)
 
 ## Sobre
 
@@ -138,6 +139,14 @@ Link do figma do projeto: [Clique aqui para acessar!](https://www.figma.com/desi
 
 A API do projeto foi hospedada no Google Cloud. No entanto, como o certificado SSL é autoassinado, é necessário conceder as permissões apropriadas nos navegadores para acessá-la. Caso contrário, qualquer requisição feita pelo front-end à API poderá falhar, impedindo o funcionamento correto da aplicação.
 Sendo assim, antes de acessar o site entre no seguinte link e conceda permissão no navegador:
+
+## Docker
+
+- Execute o seguinte para construir a imagem do Front-end do projeto
+
+```bash
+  docker build -t front-to-do .
+```
 
 [Link API](https://35.192.146.233/)
 
