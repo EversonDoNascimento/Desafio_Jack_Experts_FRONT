@@ -142,7 +142,7 @@ Sendo assim, antes de acessar o site entre no seguinte link e conceda permissão
 
 ## Docker
 
-- Execute o seguinte para construir a imagem do Front-end do projeto
+- Execute o seguinte comando para construir a imagem do Front-end do projeto:
 
 ```bash
   docker build -t front-to-do .
